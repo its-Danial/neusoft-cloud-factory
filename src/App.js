@@ -1,7 +1,7 @@
 import SignUp from "./pages/SignUp";
 import { Route, Switch } from "react-router-dom";
 import SignInSide from "./pages/SingInSide";
-import Dashboard from "./components/Dashboard";
+import ManufacturerDash from "./components/ManufacturerDash";
 import AdminDash from "./components/AdminDash";
 import LandingPage from "./pages/LandingPage";
 
@@ -16,9 +16,6 @@ function App() {
       </Route>
       <Route path="/sign-up" exact>
         <SignUp />
-      </Route>
-      <Route path="/dashboard" exact>
-        <Dashboard />
       </Route>
       <Route path="/dashboard/admin/user-management" exact>
         <AdminDash />
@@ -38,8 +35,11 @@ function App() {
       <Route path="/dashboard/admin/capacity-center/device-details" exact>
         <AdminDash />
       </Route>
-      <Route path="/dashboard/manager" exact>
-        manager
+      <Route path="/dashboard/manufacturer/my-factory" exact>
+        <ManufacturerDash />
+      </Route>
+      <Route path="/dashboard/manufacturer/order-management" exact>
+        <ManufacturerDash />
       </Route>
       <Route path="/dashboard/customer" exact>
         customer

@@ -23,22 +23,23 @@ import { Link } from "react-router-dom";
 const theme = createTheme();
 
 function SignUp() {
-  const [accountType, setAccountType] = useState("CloudFactory");
+  const [accountType, setAccountType] = useState("Customer");
 
   //submit handler function
   const handleSubmit = (event) => {
     event.preventDefault();
 
     const data = new FormData(event.currentTarget);
-    console.log(event.target.value);
-    console.log({
+    const userInfo = {
       userName: data.get("userName"),
       password: data.get("password"),
       fullName: data.get("fullName"),
       contactInfo: data.get("contactInfo"),
       factoryName: data.get("factoryName"),
       factoryInfo: data.get("factoryInfo"),
-    });
+    };
+
+    console.log(userInfo.factoryName != null ? "Man" : "customer");
   };
 
   const handleChecked = (event) => {
@@ -124,18 +125,18 @@ function SignUp() {
 
                 <RadioGroup row name="row-radio-buttons-group">
                   <FormControlLabel
-                    value="cloudFactory"
+                    value="Manufacturer"
                     control={<Radio onChange={handleChecked} />}
-                    label="Cloud Factory"
+                    label="Manufacturer"
                   />
                   <FormControlLabel
-                    value="retailer"
+                    value="Customer"
                     control={<Radio onChange={handleChecked} />}
-                    label="Retailer "
+                    label="Customer"
                   />
                 </RadioGroup>
               </Grid>
-              {accountType === "cloudFactory" && (
+              {accountType === "Manufacturer" && (
                 <>
                   <Grid item xs={12}>
                     <TextField
