@@ -36,6 +36,7 @@ const OwnedFactoryButtons = (props) => {
         <PowerSettingsNewIcon />
       </IconButton>
       <IconButton
+        {...props.state}
         style={{ marginLeft: "5%" }}
         color="primary"
         aria-label="edit"
@@ -44,6 +45,7 @@ const OwnedFactoryButtons = (props) => {
         <BuildIcon />
       </IconButton>
       <IconButton
+        {...props.state}
         style={{ marginLeft: "5%" }}
         onClick={onDeleteClickHandler}
         className="btn"

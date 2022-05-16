@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
-
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
-import ToggleConfigButtons from "../helper/ToggleConfigButtons";
 import OwnedFactoryButtons from "../helper/OwnedFactoryButtons";
 import { StyledTableCell, StyledTableRow } from "../ui/StyledTable";
 
@@ -60,7 +57,8 @@ const MyFactory = () => {
       "on",
       "rental",
       "Clipper",
-      <ToggleConfigButtons
+      <OwnedFactoryButtons
+        state={{ disabled: "disabled" }}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
         id={91741}
@@ -75,7 +73,8 @@ const MyFactory = () => {
       "off",
       "rental",
       "Clipper",
-      <ToggleConfigButtons
+      <OwnedFactoryButtons
+        state={{ disabled: "disabled" }}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
         id={58232}
@@ -132,7 +131,7 @@ const MyFactory = () => {
       createData(
         randomId,
         ...input,
-        <ToggleConfigButtons
+        <OwnedFactoryButtons
           onDelete={onDeleteClickHandler}
           onConfig={onConfigClickHandler}
           id={randomId}
@@ -165,15 +164,6 @@ const MyFactory = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {/* number,
-    id,
-    name,
-    category,
-    specifications,
-    status,
-    deviceSource,
-    factory,
-    edit, */}
             {searchResult.map((row) => (
               <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row">
