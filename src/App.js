@@ -4,6 +4,9 @@ import SignInSide from "./pages/SingInSide";
 import ManufacturerDash from "./components/ManufacturerDash";
 import AdminDash from "./components/AdminDash";
 import LandingPage from "./pages/LandingPage";
+import CustomerDash from "./components/CustomerDash";
+
+// need to do the search bar and buttons for Manufacture then the table buttons
 
 function App() {
   return (
@@ -41,8 +44,8 @@ function App() {
       <Route path="/dashboard/manufacturer/order-management" exact>
         <ManufacturerDash />
       </Route>
-      <Route path="/dashboard/customer" exact>
-        customer
+      <Route path="/dashboard/customer/order-management" exact>
+        <CustomerDash />
       </Route>
     </Switch>
   );
