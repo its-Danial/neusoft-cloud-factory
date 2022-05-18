@@ -12,6 +12,8 @@ import SearchAndAddBar from "../ui/SearchAndAddBar";
 
 import DetailsForm from "../forms/DetailsForm";
 import generateRandomID from "../helper/generateRandomID";
+import RentDeviceForm from "../forms/RentDeviceForm";
+import DevicesConfigForm from "../forms/DevicesConfigForm";
 
 function createData(
   number,
@@ -38,6 +40,8 @@ function createData(
 }
 
 const MyFactory = () => {
+  const [showConfigForm, setShowConfigForm] = useState(false);
+
   const onDeleteClickHandler = (id) => {
     console.log("delete", id);
     // const newData = rows.filter((row) => row.id !== id);
@@ -45,6 +49,34 @@ const MyFactory = () => {
   };
   const onConfigClickHandler = (id) => {
     console.log("edit", id);
+    setShowConfigForm(true);
+  };
+
+  const turnOnOffHandler = (id) => {
+    let newRow;
+    let toggledRow = [];
+
+    setRowData((prevData) => {
+      prevData.forEach((row) => {
+        if (row.id === id) {
+          newRow = {
+            number: row.number,
+            id: row.id,
+            name: row.name,
+            category: row.category,
+            specifications: row.specifications,
+            status: row.status === "on" ? "off" : "on",
+            deviceSource: row.deviceSource,
+            factory: row.factory,
+            edit: row.edit,
+          };
+          toggledRow.push(newRow);
+        } else {
+          toggledRow.push(row);
+        }
+      });
+      return toggledRow;
+    });
   };
 
   const defaultRows = [
@@ -58,6 +90,7 @@ const MyFactory = () => {
       "rental",
       "Clipper",
       <OwnedFactoryButtons
+        onTurnOff={turnOnOffHandler}
         state={{ disabled: "disabled" }}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
@@ -74,6 +107,7 @@ const MyFactory = () => {
       "rental",
       "Clipper",
       <OwnedFactoryButtons
+        onTurnOff={turnOnOffHandler}
         state={{ disabled: "disabled" }}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
@@ -90,6 +124,7 @@ const MyFactory = () => {
       "owned",
       "Harvey",
       <OwnedFactoryButtons
+        onTurnOff={turnOnOffHandler}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
         id={16145}
@@ -125,29 +160,59 @@ const MyFactory = () => {
 
   const createInputtedData = (formData) => {
     //for adding new values to the table
-    console.log(formData);
+
     const randomId = generateRandomID();
     setRowData((prevData) => [
       ...prevData,
       createData(
+        prevData.length + 1,
         randomId,
-        `Device ${randomId}`,
         formData.name,
         formData.category,
         formData.specification,
         "on",
         "owned",
         "Customer1",
-        <OwnedFactoryButtons onDelete={onDeleteClickHandler} id={randomId} />
+        <OwnedFactoryButtons
+          onTurnOff={turnOnOffHandler}
+          onDelete={onDeleteClickHandler}
+          onConfig={onConfigClickHandler}
+          id={randomId}
+        />
       ),
     ]);
   };
 
+  const [showRentDeviceForm, setShowRentDeviceForm] = useState(true);
+
+  const showRentDeviceFormHandler = (state) => {
+    setShowRentDeviceForm(state);
+    setShowConfigForm(false);
+  };
+
+  const showConfigFormHandler = (state) => {
+    setShowConfigForm(state);
+    console.log(state);
+  };
+
   return (
     <>
-      <DetailsForm getValues={createInputtedData} title="Device" />
+      {!showRentDeviceForm && (
+        <DetailsForm getValues={createInputtedData} title="Device" />
+      )}
+      {showRentDeviceForm && (
+        <RentDeviceForm showRentDeviceForm={showRentDeviceFormHandler} />
+      )}
 
-      <SearchAndAddBar showRent={true} onEnterText={onSearchHandler} />
+      {showConfigForm && (
+        <DevicesConfigForm showConfigForm={showConfigFormHandler} />
+      )}
+
+      <SearchAndAddBar
+        showRentDeviceForm={showRentDeviceFormHandler}
+        showRent={true}
+        onEnterText={onSearchHandler}
+      />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label="customized table">
           <TableHead>

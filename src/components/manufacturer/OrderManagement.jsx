@@ -12,7 +12,7 @@ import { StyledTableCell, StyledTableRow } from "../ui/StyledTable";
 import SearchAndAddBar from "../ui/SearchAndAddBar";
 import BidButton from "../helper/BidButton";
 
-import CategoryForm from "../forms/CategoryForm";
+import BidForm from "../forms/BidForm";
 import generateRandomID from "../helper/generateRandomID";
 
 function createData(
@@ -85,7 +85,7 @@ const OrderManagement = () => {
       "Completed",
       <BidButton
         text={"Bid"}
-        state={{ disabled: "disabled" }}
+        disabled={true}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
         id={84232}
@@ -122,7 +122,7 @@ const OrderManagement = () => {
       "Bidding Ends",
       <BidButton
         text={"Bid"}
-        state={{ disabled: "disabled" }}
+        disabled={true}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
         id={57433}
@@ -175,12 +175,9 @@ const OrderManagement = () => {
 
   return (
     <>
-      <CategoryForm
-        getValue={createInputtedData}
-        title="Device Category Form"
-      />
+      <BidForm getValue={createInputtedData} title="Bid Form" />
 
-      <SearchAndAddBar onEnterText={onSearchHandler} />
+      <SearchAndAddBar dontShowAdd={true} onEnterText={onSearchHandler} />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label="customized table">
           <TableHead>
@@ -198,18 +195,6 @@ const OrderManagement = () => {
               <StyledTableCell align="left"></StyledTableCell>
             </TableRow>
           </TableHead>
-
-          {/* number,
-    id,
-    name,
-    quantity,
-    deliveryDate,
-    bidDeadline,
-    receiver,
-    receiverContact,
-    shippingAddress,
-    status,
-    edit, */}
 
           <TableBody>
             {searchResult.map((row) => (

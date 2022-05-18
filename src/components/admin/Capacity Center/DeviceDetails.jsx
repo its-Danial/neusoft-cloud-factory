@@ -64,17 +64,6 @@ export default function DeviceDetails() {
     let newRow;
     let toggledRow = [];
 
-    // id,
-    // deviceNum,
-    // name,
-    // category,
-    // specifications,
-    // descriptions,
-    // status,
-    // rentalStatus,
-    // ownedFactoryOperations,
-    // edit,
-
     setRowData((prevData) => {
       prevData.forEach((row) => {
         if (row.id === id) {

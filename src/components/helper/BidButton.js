@@ -1,5 +1,8 @@
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
+import { useDispatch } from "react-redux";
+import { modalActions } from "../../store/modalStateSlice";
 
 const BidButtonWithStyle = styled(Button)({
   textTransform: "none",
@@ -7,12 +10,23 @@ const BidButtonWithStyle = styled(Button)({
 });
 
 const BidButton = (props) => {
+  const dispatch = useDispatch();
+
+  const [style, setStyle] = useState(false);
+
+  const onClickHandler = (e) => {
+    setStyle(true);
+    dispatch(modalActions.open());
+    props.showBid(true);
+  };
+
   return (
     <BidButtonWithStyle
-      {...props.state}
+      disabled={props.disabled || style ? true : false}
       disableElevation
       color="success"
       variant="contained"
+      onClick={onClickHandler}
     >
       {props.text}
     </BidButtonWithStyle>

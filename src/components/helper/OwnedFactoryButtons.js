@@ -1,26 +1,25 @@
-import { useState } from "react";
 import IconButton from "@mui/material/IconButton";
 import SettingsIcon from "@mui/icons-material/Settings";
 import BuildIcon from "@mui/icons-material/Build";
 import DeleteIcon from "@mui/icons-material/Delete";
-import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import PowerButton from "./PowerButton";
 import Stack from "@mui/material/Stack";
+import { useDispatch } from "react-redux";
+import { modalActions } from "../../store/modalStateSlice";
 
 const OwnedFactoryButtons = (props) => {
-  const [btnColor, setButtonColor] = useState(true);
+  const dispatch = useDispatch();
 
   const id = props.id;
 
   const onConfigClickHandler = () => {
     props.onConfig(id);
-  };
-
-  const onPowerOnClickHandler = () => {
-    setButtonColor((prevColor) => !prevColor);
+    dispatch(modalActions.open());
   };
 
   const onEditClickHandler = () => {
     props.onEdit(id);
+    dispatch(modalActions.open());
   };
   const onDeleteClickHandler = () => {
     props.onDelete(id);
@@ -28,13 +27,7 @@ const OwnedFactoryButtons = (props) => {
 
   return (
     <Stack spacing={2} direction="row">
-      <IconButton
-        onClick={onPowerOnClickHandler}
-        color={btnColor ? "success" : "error"}
-        aria-label="edit"
-      >
-        <PowerSettingsNewIcon />
-      </IconButton>
+      <PowerButton onChangeColor={props.onTurnOff} id={id} />
       <IconButton
         {...props.state}
         color="primary"
@@ -55,7 +48,7 @@ const OwnedFactoryButtons = (props) => {
       <IconButton
         onClick={onConfigClickHandler}
         color="primary"
-        aria-label="edit"
+        aria-label="Configure"
       >
         <SettingsIcon />
       </IconButton>

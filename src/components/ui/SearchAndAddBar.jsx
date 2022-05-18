@@ -7,7 +7,14 @@ import { modalActions } from "../../store/modalStateSlice";
 const SearchAndAddBar = (props) => {
   const dispatch = useDispatch();
 
-  const onAddClickHandler = () => dispatch(modalActions.open());
+  const onAddClickHandler = () => {
+    dispatch(modalActions.open());
+    props.showRentDeviceForm(false);
+  };
+  const onRentDeviceHandler = () => {
+    dispatch(modalActions.open());
+    props.showRentDeviceForm(true);
+  };
 
   //for searching
 
@@ -17,18 +24,23 @@ const SearchAndAddBar = (props) => {
 
   return (
     <>
-      <Button
-        onClick={onAddClickHandler}
-        variant="contained"
-        color="success"
-        startIcon={<AddIcon />}
-        aria-label="add new entry button"
-        title="Add new entry button"
-      >
-        Add
-      </Button>
+      {!props.dontShowAdd && (
+        <Button
+          onClick={onAddClickHandler}
+          variant="contained"
+          color="success"
+          startIcon={<AddIcon />}
+          aria-label="add new entry button"
+          title="Add new entry button"
+        >
+          Add
+        </Button>
+      )}
       {props.showRent && (
         <Button
+          aria-label="rent a device button"
+          title="Rent a device button"
+          onClick={onRentDeviceHandler}
           color="success"
           style={{ marginLeft: "20px" }}
           variant="contained"
