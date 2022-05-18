@@ -10,7 +10,7 @@ import { StyledTableCell, StyledTableRow } from "../ui/StyledTable";
 
 import SearchAndAddBar from "../ui/SearchAndAddBar";
 
-import CategoryForm from "../forms/CategoryForm";
+import DetailsForm from "../forms/DetailsForm";
 import generateRandomID from "../helper/generateRandomID";
 
 function createData(
@@ -67,7 +67,7 @@ const MyFactory = () => {
     createData(
       2,
       58232,
-      "Hitachi L-300",
+      "Xiaomi T-213",
       "E-Lathe",
       "L300P 10 Hp 75 kW 200 v",
       "off",
@@ -123,31 +123,31 @@ const MyFactory = () => {
     );
   };
 
-  const createInputtedData = (input) => {
+  const createInputtedData = (formData) => {
     //for adding new values to the table
+    console.log(formData);
     const randomId = generateRandomID();
     setRowData((prevData) => [
       ...prevData,
       createData(
         randomId,
-        ...input,
-        <OwnedFactoryButtons
-          onDelete={onDeleteClickHandler}
-          onConfig={onConfigClickHandler}
-          id={randomId}
-        />
+        `Device ${randomId}`,
+        formData.name,
+        formData.category,
+        formData.specification,
+        "on",
+        "owned",
+        "Customer1",
+        <OwnedFactoryButtons onDelete={onDeleteClickHandler} id={randomId} />
       ),
     ]);
   };
 
   return (
     <>
-      <CategoryForm
-        getValue={createInputtedData}
-        title="Device Category Form"
-      />
+      <DetailsForm getValues={createInputtedData} title="Device" />
 
-      <SearchAndAddBar onEnterText={onSearchHandler} />
+      <SearchAndAddBar showRent={true} onEnterText={onSearchHandler} />
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label="customized table">
           <TableHead>

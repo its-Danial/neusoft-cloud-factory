@@ -12,6 +12,9 @@ import { StyledTableCell, StyledTableRow } from "../ui/StyledTable";
 
 import TextField from "@mui/material/TextField";
 
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
+
 function createData(id, userName, fullName, contactInfo, role, manage) {
   return { id, userName, fullName, contactInfo, role, manage };
 }
@@ -123,8 +126,10 @@ export default function UserManagement() {
         style={{ float: "right", margin: "5px" }}
         size="small"
         id="outlined-basic"
-        label="Search Field"
+        label="Search Username"
         variant="outlined"
+        aria-label="Search Username"
+        title="Search using Username"
         onChange={onSearchHandler}
       />
       <TableContainer component={Paper}>

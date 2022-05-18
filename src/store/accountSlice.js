@@ -13,7 +13,7 @@ const initialState = {
     },
     {
       email: "manager1",
-      password: "manage123",
+      password: "manager123",
       id: 70,
       fullName: "Manager",
       contactInfo: "Manager contact",

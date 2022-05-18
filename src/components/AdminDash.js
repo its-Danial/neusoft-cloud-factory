@@ -35,6 +35,8 @@ import { Redirect } from "react-router-dom";
 
 import UserAvatar from "./ui/UserAvatar";
 
+import PageNumber from "./ui/PageNumber";
+
 const mdTheme = createTheme();
 
 function DashboardContent(props) {
@@ -71,6 +73,7 @@ function DashboardContent(props) {
                 edge="start"
                 color="inherit"
                 aria-label="open drawer"
+                title="Open Drawer"
                 onClick={toggleDrawer}
                 sx={{
                   marginRight: "36px",
@@ -96,6 +99,8 @@ function DashboardContent(props) {
               <Button
                 variant="contained"
                 color="primary"
+                aria-label="logout button"
+                title="Sign out of this account"
                 endIcon={<ExitToAppIcon />}
                 onClick={onLogOutClickHandler}
               >
@@ -112,7 +117,11 @@ function DashboardContent(props) {
                 px: [1],
               }}
             >
-              <IconButton onClick={toggleDrawer}>
+              <IconButton
+                aria-label="close drawer"
+                title="Close Drawer"
+                onClick={toggleDrawer}
+              >
                 <ChevronLeftIcon />
               </IconButton>
             </Toolbar>
@@ -157,6 +166,8 @@ function DashboardContent(props) {
               {displayContent === "Capacity Center - Device Details" && (
                 <DeviceDetails />
               )}
+
+              <PageNumber />
             </Container>
             <Copyright sx={{ pt: 4 }} />
           </Box>

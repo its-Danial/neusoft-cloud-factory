@@ -4,6 +4,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import BuildIcon from "@mui/icons-material/Build";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import Stack from "@mui/material/Stack";
 
 const OwnedFactoryButtons = (props) => {
   const [btnColor, setButtonColor] = useState(true);
@@ -26,9 +27,8 @@ const OwnedFactoryButtons = (props) => {
   };
 
   return (
-    <div>
+    <Stack spacing={2} direction="row">
       <IconButton
-        style={{ marginLeft: "auto", marginRight: "auto" }}
         onClick={onPowerOnClickHandler}
         color={btnColor ? "success" : "error"}
         aria-label="edit"
@@ -37,7 +37,6 @@ const OwnedFactoryButtons = (props) => {
       </IconButton>
       <IconButton
         {...props.state}
-        style={{ marginLeft: "5%" }}
         color="primary"
         aria-label="edit"
         onClick={onEditClickHandler}
@@ -46,7 +45,6 @@ const OwnedFactoryButtons = (props) => {
       </IconButton>
       <IconButton
         {...props.state}
-        style={{ marginLeft: "5%" }}
         onClick={onDeleteClickHandler}
         className="btn"
         color="error"
@@ -55,14 +53,13 @@ const OwnedFactoryButtons = (props) => {
         <DeleteIcon />
       </IconButton>
       <IconButton
-        style={{ float: "right" }}
         onClick={onConfigClickHandler}
         color="primary"
         aria-label="edit"
       >
         <SettingsIcon />
       </IconButton>
-    </div>
+    </Stack>
   );
 };
 

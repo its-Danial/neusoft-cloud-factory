@@ -83,10 +83,22 @@ export default function LandingPage() {
               spacing={2}
               justifyContent="center"
             >
-              <Button size="large" onClick={redirectSignUp} variant="contained">
+              <Button
+                title="Create a new user account"
+                aria-label="Sign Up"
+                size="large"
+                onClick={redirectSignUp}
+                variant="contained"
+              >
                 Sign Up
               </Button>
-              <Button size="large" onClick={redirectSignIn} variant="outlined">
+              <Button
+                title="Login as existing user"
+                aria-label="Sign In"
+                size="large"
+                onClick={redirectSignIn}
+                variant="outlined"
+              >
                 Log In
               </Button>
             </Stack>

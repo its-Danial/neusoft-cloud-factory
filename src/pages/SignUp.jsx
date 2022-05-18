@@ -18,12 +18,13 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 import Copyright from "../components/ui/Copyright";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const theme = createTheme();
 
 function SignUp() {
-  const [accountType, setAccountType] = useState("Customer");
+  const [accountType, setAccountType] = useState("");
+  const [loggedInAccountType, setLoggedInAccountType] = useState(null);
 
   //submit handler function
   const handleSubmit = (event) => {
@@ -38,8 +39,8 @@ function SignUp() {
       factoryName: data.get("factoryName"),
       factoryInfo: data.get("factoryInfo"),
     };
-
-    console.log(userInfo.factoryName != null ? "Man" : "customer");
+    setLoggedInAccountType((prev) => accountType);
+    console.log(userInfo.factoryName != null ? "Man" : "customerThis");
   };
 
   const handleChecked = (event) => {
@@ -49,136 +50,144 @@ function SignUp() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign up
-          </Typography>
+    <>
+      {loggedInAccountType === "Customer" && (
+        <Redirect to="/dashboard/customer/order-management" />
+      )}
+      {loggedInAccountType === "Manufacturer" && (
+        <Redirect to="/dashboard/manufacturer/my-factory" />
+      )}
+      <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
           <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
+            sx={{
+              marginTop: 8,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
           >
-            {/* User Name */}
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="user-name"
-                  name="userName"
-                  required
-                  fullWidth
-                  id="userName"
-                  label="User Name"
-                  autoFocus
-                />
-              </Grid>
-              {/* password */}
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  autoComplete="new-password"
-                />
-              </Grid>
-              {/* full name */}
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="fullName"
-                  label="Full Name"
-                  name="fullName"
-                  autoComplete="full-name"
-                />
-              </Grid>
-              {/* contact info  */}
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="contactInfo"
-                  label="Contact Information"
-                  name="contactInfo"
-                  autoComplete="contact-information"
-                />
-              </Grid>
-              {/* user type */}
-              <Grid item xs={12}>
-                <FormLabel>Account Type</FormLabel>
-
-                <RadioGroup row name="row-radio-buttons-group">
-                  <FormControlLabel
-                    value="Manufacturer"
-                    control={<Radio onChange={handleChecked} />}
-                    label="Manufacturer"
-                  />
-                  <FormControlLabel
-                    value="Customer"
-                    control={<Radio onChange={handleChecked} />}
-                    label="Customer"
-                  />
-                </RadioGroup>
-              </Grid>
-              {accountType === "Manufacturer" && (
-                <>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="factoryName"
-                      label="Factory Name"
-                      name="factoryName"
-                      autoComplete="Factory Name"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      required
-                      fullWidth
-                      id="factoryInfo"
-                      label="Cloud Factory Information"
-                      name="factoryInfo"
-                      autoComplete="Cloud Factory Information"
-                    />
-                  </Grid>
-                </>
-              )}
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Sign up
+            </Typography>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ mt: 3 }}
             >
-              Sign Up
-            </Button>
-            <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link to="/sign-in">Already have an account? Sign in</Link>
+              {/* User Name */}
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="user-name"
+                    name="userName"
+                    required
+                    fullWidth
+                    id="userName"
+                    label="User Name"
+                    autoFocus
+                  />
+                </Grid>
+                {/* password */}
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    autoComplete="new-password"
+                  />
+                </Grid>
+                {/* full name */}
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="fullName"
+                    label="Full Name"
+                    name="fullName"
+                    autoComplete="full-name"
+                  />
+                </Grid>
+                {/* contact info  */}
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    id="contactInfo"
+                    label="Contact Information"
+                    name="contactInfo"
+                    autoComplete="contact-information"
+                  />
+                </Grid>
+                {/* user type */}
+                <Grid item xs={12}>
+                  <FormLabel>Account Type</FormLabel>
+
+                  <RadioGroup row name="row-radio-buttons-group">
+                    <FormControlLabel
+                      value="Manufacturer"
+                      control={<Radio onChange={handleChecked} />}
+                      label="Manufacturer"
+                    />
+                    <FormControlLabel
+                      value="Customer"
+                      control={<Radio onChange={handleChecked} />}
+                      label="Customer"
+                    />
+                  </RadioGroup>
+                </Grid>
+                {accountType === "Manufacturer" && (
+                  <>
+                    <Grid item xs={12}>
+                      <TextField
+                        required
+                        fullWidth
+                        id="factoryName"
+                        label="Factory Name"
+                        name="factoryName"
+                        autoComplete="Factory Name"
+                      />
+                    </Grid>
+                    <Grid item xs={12}>
+                      <TextField
+                        required
+                        fullWidth
+                        id="factoryInfo"
+                        label="Cloud Factory Information"
+                        name="factoryInfo"
+                        autoComplete="Cloud Factory Information"
+                      />
+                    </Grid>
+                  </>
+                )}
               </Grid>
-            </Grid>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign Up
+              </Button>
+              <Grid container justifyContent="flex-end">
+                <Grid item>
+                  <Link to="/sign-in">Already have an account? Sign in</Link>
+                </Grid>
+              </Grid>
+            </Box>
           </Box>
-        </Box>
-        <Copyright sx={{ mt: 5 }} />
-      </Container>
-    </ThemeProvider>
+          <Copyright sx={{ mt: 5 }} />
+        </Container>
+      </ThemeProvider>
+    </>
   );
 }
 

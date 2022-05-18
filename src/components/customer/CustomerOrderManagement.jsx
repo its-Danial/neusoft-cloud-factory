@@ -14,6 +14,7 @@ import BidButton from "../helper/BidButton";
 
 import CategoryForm from "../forms/CategoryForm";
 import generateRandomID from "../helper/generateRandomID";
+import DraftButton from "../helper/DraftButton";
 
 function createData(
   number,
@@ -58,14 +59,16 @@ const CustomerOrderManagement = () => {
       1,
       65324,
       "XS max Case",
-      "300",
+      "10",
       "26-06-2022",
       "20-06-2022",
       "Mitsuhide Kino",
       "+86123424526",
       "Orchid St. No.& A",
-      "On Going",
+      "Bid Ends",
       <BidButton
+        text={"Bid Details"}
+        state={{ disabled: "disabled" }}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
         id={65324}
@@ -75,14 +78,15 @@ const CustomerOrderManagement = () => {
       2,
       84232,
       "12 pro Case",
-      "200",
+      "7",
       "12-04-2022",
       "06-04-2022",
       "Porsley Cliff",
       "+86624646754",
       "Gardenio St No.145",
-      "Completed",
+      "Bid Ends",
       <BidButton
+        text={"Bid Details"}
         state={{ disabled: "disabled" }}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
@@ -93,14 +97,15 @@ const CustomerOrderManagement = () => {
       3,
       16145,
       "P50 Case",
-      "400",
+      "4",
       "19-06-2022",
       "13-06-2022",
       "Clint Patricia",
       "+8613524633",
       "Baulevard St. No.64",
-      "On Going",
+      "Posted",
       <BidButton
+        text={"Bid Details"}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
         id={16145}
@@ -110,14 +115,33 @@ const CustomerOrderManagement = () => {
       4,
       57433,
       "522 Case",
+      "9",
+      "15-05-2022",
+      "18-05-2022",
+      "Kim Sang Hyun",
+      "+86452466243",
+      "Narnia St. No.64",
+      "Completed",
+      <BidButton
+        text={"Bid Details"}
+        state={{ disabled: "disabled" }}
+        onDelete={onDeleteClickHandler}
+        onConfig={onConfigClickHandler}
+        id={57433}
+      />
+    ),
+    createData(
+      5,
+      23425,
+      "522 Case",
       "1000",
       "15-05-2022",
       "18-05-2022",
       "Kim Sang Hyun",
       "+86452466243",
       "Narnia St. No.64",
-      "Bidding Ends",
-      <BidButton
+      "Draft",
+      <DraftButton
         state={{ disabled: "disabled" }}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}

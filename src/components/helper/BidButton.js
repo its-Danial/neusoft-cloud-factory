@@ -1,15 +1,21 @@
 import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
+
+const BidButtonWithStyle = styled(Button)({
+  textTransform: "none",
+  lineHeight: 1.25,
+});
 
 const BidButton = (props) => {
   return (
-    <Button
+    <BidButtonWithStyle
       {...props.state}
       disableElevation
       color="success"
       variant="contained"
     >
-      Bid
-    </Button>
+      {props.text}
+    </BidButtonWithStyle>
   );
 };
 

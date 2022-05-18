@@ -17,7 +17,8 @@ const EditDeleteButtons = (props) => {
       <IconButton
         style={{ marginRight: "50px" }}
         color="primary"
-        aria-label="edit"
+        title="Edit Details"
+        aria-label="Edit Details"
         onClick={onEditClickHandler}
       >
         <BuildIcon />
@@ -26,7 +27,8 @@ const EditDeleteButtons = (props) => {
         onClick={onDeleteClickHandler}
         className="btn"
         color="error"
-        aria-label="delete"
+        title="Delete Entry"
+        aria-label="Delete Entry"
       >
         <DeleteIcon />
       </IconButton>

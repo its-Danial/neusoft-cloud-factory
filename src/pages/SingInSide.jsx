@@ -57,10 +57,10 @@ function SignInSide(props) {
         <Redirect to="/dashboard/admin/user-management" />
       )}
       {isLoggedIn && accountType === "manager" && (
-        <Redirect to="/dashboard/manager" />
+        <Redirect to="/dashboard/manufacturer/my-factory" />
       )}
       {isLoggedIn && accountType === "customer" && (
-        <Redirect to="/dashboard/customer" />
+        <Redirect to="/dashboard/customer/order-management" />
       )}
       <ThemeProvider theme={theme}>
         <Grid container component="main" sx={{ height: "100vh" }}>

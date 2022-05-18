@@ -20,10 +20,22 @@ const SearchAndAddBar = (props) => {
       <Button
         onClick={onAddClickHandler}
         variant="contained"
+        color="success"
         startIcon={<AddIcon />}
+        aria-label="add new entry button"
+        title="Add new entry button"
       >
         Add
       </Button>
+      {props.showRent && (
+        <Button
+          color="success"
+          style={{ marginLeft: "20px" }}
+          variant="contained"
+        >
+          Rent Device
+        </Button>
+      )}
       <TextField
         // style={{ marginLeft: "10px", marginBottom: "10px" }}
         style={{ float: "right", margin: "5px" }}

@@ -66,6 +66,7 @@ const OrderManagement = () => {
       "Orchid St. No.& A",
       "On Going",
       <BidButton
+        text={"Bid"}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
         id={65324}
@@ -83,6 +84,7 @@ const OrderManagement = () => {
       "Gardenio St No.145",
       "Completed",
       <BidButton
+        text={"Bid"}
         state={{ disabled: "disabled" }}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
@@ -101,6 +103,7 @@ const OrderManagement = () => {
       "Baulevard St. No.64",
       "On Going",
       <BidButton
+        text={"Bid"}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
         id={16145}
@@ -118,6 +121,7 @@ const OrderManagement = () => {
       "Narnia St. No.64",
       "Bidding Ends",
       <BidButton
+        text={"Bid"}
         state={{ disabled: "disabled" }}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
