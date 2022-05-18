@@ -12,7 +12,7 @@ import { StyledTableCell, StyledTableRow } from "../ui/StyledTable";
 import SearchAndAddBar from "../ui/SearchAndAddBar";
 import BidButton from "../helper/BidButton";
 
-import CategoryForm from "../forms/CategoryForm";
+import CustomerOrderForm from "../forms/CustomerOrderForm";
 import generateRandomID from "../helper/generateRandomID";
 import DraftButton from "../helper/DraftButton";
 
@@ -68,7 +68,7 @@ const CustomerOrderManagement = () => {
       "Bid Ends",
       <BidButton
         text={"Bid Details"}
-        state={{ disabled: "disabled" }}
+        disabled={true}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
         id={65324}
@@ -87,6 +87,7 @@ const CustomerOrderManagement = () => {
       "Bid Ends",
       <BidButton
         text={"Bid Details"}
+        disabled={true}
         state={{ disabled: "disabled" }}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
@@ -124,7 +125,7 @@ const CustomerOrderManagement = () => {
       "Completed",
       <BidButton
         text={"Bid Details"}
-        state={{ disabled: "disabled" }}
+        disabled={true}
         onDelete={onDeleteClickHandler}
         onConfig={onConfigClickHandler}
         id={57433}
@@ -195,10 +196,7 @@ const CustomerOrderManagement = () => {
 
   return (
     <>
-      <CategoryForm
-        getValue={createInputtedData}
-        title="Device Category Form"
-      />
+      <CustomerOrderForm getValue={createInputtedData} title="Order" />
 
       <SearchAndAddBar onEnterText={onSearchHandler} />
       <TableContainer component={Paper}>
