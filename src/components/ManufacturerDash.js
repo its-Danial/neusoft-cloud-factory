@@ -28,6 +28,7 @@ import { sideDrawerStateActions } from "../store/sideDrawerStateSlice";
 import { Redirect } from "react-router-dom";
 
 import UserAvatar from "./ui/UserAvatar";
+import PageNumber from "./ui/PageNumber";
 
 const mdTheme = createTheme();
 
@@ -138,6 +139,7 @@ function DashboardContent(props) {
 
               {displayContent === "My Factory" && <MyFactory />}
               {displayContent === "Order Management" && <OrderManagement />}
+              <PageNumber />
             </Container>
             <Copyright sx={{ pt: 4 }} />
           </Box>

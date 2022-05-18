@@ -34,6 +34,7 @@ const CategoryForm = (props) => {
     // console.log(data.get("name"));
     const value = data.get("name");
     props.getValue(value);
+    props.getEditValues(value);
   };
   return (
     <ModalForm>

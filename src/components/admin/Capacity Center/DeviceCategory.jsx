@@ -14,6 +14,8 @@ import SearchAndAddBar from "../../ui/SearchAndAddBar";
 
 import CategoryForm from "../../forms/CategoryForm";
 import generateRandomID from "../../helper/generateRandomID";
+import { modalActions } from "../../../store/modalStateSlice";
+import { useDispatch } from "react-redux";
 
 function createData(id, classification, edit) {
   return { id, classification, edit };
@@ -22,6 +24,8 @@ function createData(id, classification, edit) {
 // List of Users objects
 
 const DeviceCategory = () => {
+  const [editingID, setEditingID] = useState("");
+  const dispatch = useDispatch();
   const onDeleteClickHandler = (id) => {
     console.log("delete", id);
     // const newData = rows.filter((row) => row.id !== id);
@@ -29,6 +33,9 @@ const DeviceCategory = () => {
   };
   const onEditClickHandler = (id) => {
     console.log("edit", id);
+    console.log("edit", id);
+    dispatch(modalActions.open());
+    setEditingID(id);
   };
 
   const defaultRows = [

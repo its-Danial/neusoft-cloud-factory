@@ -15,6 +15,9 @@ import SearchAndAddBar from "../../ui/SearchAndAddBar";
 import DetailsForm from "../../forms/DetailsForm";
 import generateRandomID from "../../helper/generateRandomID";
 
+import { modalActions } from "../../../store/modalStateSlice";
+import { useDispatch } from "react-redux";
+
 function createData(
   id,
   deviceNum,
@@ -42,6 +45,10 @@ function createData(
 }
 
 export default function DeviceDetails() {
+  const dispatch = useDispatch();
+
+  const [rowToBeEditedID, setRowToBeEdited] = useState("");
+
   const onDeleteClickHandler = (id) => {
     console.log("delete", id);
 
@@ -49,6 +56,47 @@ export default function DeviceDetails() {
   };
   const onEditClickHandler = (id) => {
     console.log("edit", id);
+    dispatch(modalActions.open());
+    setRowToBeEdited((prevData) => id);
+  };
+
+  const turnOnOffHandler = (id) => {
+    let newRow;
+    let toggledRow = [];
+
+    // id,
+    // deviceNum,
+    // name,
+    // category,
+    // specifications,
+    // descriptions,
+    // status,
+    // rentalStatus,
+    // ownedFactoryOperations,
+    // edit,
+
+    setRowData((prevData) => {
+      prevData.forEach((row) => {
+        if (row.id === id) {
+          newRow = {
+            id: row.id,
+            deviceNum: row.deviceNum,
+            name: row.name,
+            category: row.category,
+            specifications: row.specifications,
+            descriptions: row.descriptions,
+            status: row.status === "on" ? "off" : "on",
+            rentalStatus: row.rentalStatus,
+            ownedFactoryOperations: row.ownedFactoryOperations,
+            edit: row.edit,
+          };
+          toggledRow.push(newRow);
+        } else {
+          toggledRow.push(row);
+        }
+      });
+      return toggledRow;
+    });
   };
 
   // List of device objects
@@ -60,10 +108,11 @@ export default function DeviceDetails() {
       "Device Category 1",
       "Device Specifications 1",
       "Device descriptions 1",
-      "Device Status 1",
+      "on",
       "Device Rental Status 1",
       "Device owned factory operations 1",
       <DeviceDetailsButtons
+        onTurnOff={turnOnOffHandler}
         onDelete={onDeleteClickHandler}
         onEdit={onEditClickHandler}
         id={13523}
@@ -76,10 +125,11 @@ export default function DeviceDetails() {
       "Device Category 2",
       "Device Specifications 2",
       "Device Descriptions 2",
-      "Device Status 2",
+      "off",
       "Device Rental Status 2",
       "Device owned factory operations 2",
       <DeviceDetailsButtons
+        onTurnOff={turnOnOffHandler}
         onDelete={onDeleteClickHandler}
         onEdit={onEditClickHandler}
         id={426234}
@@ -92,10 +142,11 @@ export default function DeviceDetails() {
       "Device Category 3",
       "Device Specifications 3",
       "Device descriptions 3",
-      "Device Status 3",
+      "off",
       "Device Rental Status 3",
       "Device owned factory operations 3",
       <DeviceDetailsButtons
+        onTurnOff={turnOnOffHandler}
         onDelete={onDeleteClickHandler}
         onEdit={onEditClickHandler}
         id={34112}
@@ -118,10 +169,11 @@ export default function DeviceDetails() {
         formData.category,
         formData.specification,
         formData.description,
-        `Device Status ${randomId}`,
+        `off`,
         `Device Rental Status ${randomId}`,
         `Device owned factory operations ${randomId}`,
         <DeviceDetailsButtons
+          onTurnOff={turnOnOffHandler}
           onDelete={onDeleteClickHandler}
           onEdit={onEditClickHandler}
           id={randomId}

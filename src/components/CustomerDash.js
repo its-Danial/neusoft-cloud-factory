@@ -23,6 +23,7 @@ import Copyright from "./ui/Copyright";
 import { Redirect } from "react-router-dom";
 
 import UserAvatar from "./ui/UserAvatar";
+import PageNumber from "./ui/PageNumber";
 
 const mdTheme = createTheme();
 
@@ -125,6 +126,7 @@ function DashboardContent(props) {
               {/* Dashboard content */}
 
               <CustomerOrderManagement />
+              <PageNumber />
             </Container>
             <Copyright sx={{ pt: 4 }} />
           </Box>

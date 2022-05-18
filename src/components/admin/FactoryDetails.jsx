@@ -7,7 +7,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-import EditDeleteButtons from "../helper/EditDeleteButtons";
+import PowerButton from "../helper/PowerButton";
 import { StyledTableCell, StyledTableRow } from "../ui/StyledTable";
 
 import TextField from "@mui/material/TextField";
@@ -19,18 +19,46 @@ function createData(
   manager,
   contact,
   userName,
-  status
+  status,
+  edit
 ) {
-  return { id, factoryName, factoryInfo, manager, contact, userName, status };
+  return {
+    id,
+    factoryName,
+    factoryInfo,
+    manager,
+    contact,
+    userName,
+    status,
+    edit,
+  };
 }
 
 export default function FactoryDetails() {
-  const onDeleteClickHandler = (id) => {
-    console.log("delete", id);
-    setRowData((prevData) => prevData.filter((row) => row.id !== id));
-  };
-  const onEditClickHandler = (id) => {
-    console.log("edit", id);
+  const turnOnOffHandler = (id) => {
+    let newRow;
+    let toggledRow = [];
+
+    setRowData((prevData) => {
+      prevData.forEach((row) => {
+        if (row.id === id) {
+          newRow = {
+            id: row.id,
+            factoryName: row.factoryName,
+            factoryInfo: row.factoryInfo,
+            manager: row.manager,
+            contact: row.contact,
+            userName: row.userName,
+            status: row.status === "on" ? "off" : "on",
+            edit: row.edit,
+          };
+          toggledRow.push(newRow);
+        } else {
+          toggledRow.push(row);
+        }
+      });
+      return toggledRow;
+    });
   };
 
   // List of factory objects
@@ -42,11 +70,8 @@ export default function FactoryDetails() {
       "manager",
       "contact",
       "username1",
-      <EditDeleteButtons
-        onDelete={onDeleteClickHandler}
-        onEdit={onEditClickHandler}
-        id={41241}
-      />
+      "off",
+      <PowerButton onChangeColor={turnOnOffHandler} id={41241} />
     ),
     createData(
       83712,
@@ -55,11 +80,8 @@ export default function FactoryDetails() {
       "manager",
       "contact",
       "username2",
-      <EditDeleteButtons
-        onDelete={onDeleteClickHandler}
-        onEdit={onEditClickHandler}
-        id={83712}
-      />
+      "off",
+      <PowerButton onChangeColor={turnOnOffHandler} id={83712} />
     ),
     createData(
       36612,
@@ -68,11 +90,8 @@ export default function FactoryDetails() {
       "manager",
       "contact",
       "username3",
-      <EditDeleteButtons
-        onDelete={onDeleteClickHandler}
-        onEdit={onEditClickHandler}
-        id={36612}
-      />
+      "on",
+      <PowerButton onChangeColor={turnOnOffHandler} id={36612} />
     ),
   ];
 
@@ -124,10 +143,11 @@ export default function FactoryDetails() {
               <StyledTableCell align="left">Contact</StyledTableCell>
               <StyledTableCell align="left">Username</StyledTableCell>
               <StyledTableCell align="left">Status</StyledTableCell>
+              <StyledTableCell align="left"></StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {searchResult.map((row) => (
+            {rows.map((row) => (
               <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row">
                   {row.id}
@@ -142,6 +162,7 @@ export default function FactoryDetails() {
                 <StyledTableCell align="left">{row.contact}</StyledTableCell>
                 <StyledTableCell align="left">{row.userName}</StyledTableCell>
                 <StyledTableCell align="left">{row.status}</StyledTableCell>
+                <StyledTableCell align="left">{row.edit}</StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>

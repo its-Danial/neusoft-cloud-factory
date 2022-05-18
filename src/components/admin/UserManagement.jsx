@@ -11,9 +11,10 @@ import EditDeleteButtons from "../helper/EditDeleteButtons";
 import { StyledTableCell, StyledTableRow } from "../ui/StyledTable";
 
 import TextField from "@mui/material/TextField";
+import EditUserManagementForm from "../forms/EditUserManagementForm";
 
-import Pagination from "@mui/material/Pagination";
-import Stack from "@mui/material/Stack";
+import { modalActions } from "../../store/modalStateSlice";
+import { useDispatch } from "react-redux";
 
 function createData(id, userName, fullName, contactInfo, role, manage) {
   return { id, userName, fullName, contactInfo, role, manage };
@@ -22,12 +23,18 @@ function createData(id, userName, fullName, contactInfo, role, manage) {
 // List of Users objects
 
 export default function UserManagement() {
+  const dispatch = useDispatch();
+
+  const [rowToBeEditedID, setRowToBeEdited] = useState("");
+
   const onDeleteClickHandler = (id) => {
     console.log("delete", id);
     setRowData((prevData) => prevData.filter((row) => row.id !== id));
   };
   const onEditClickHandler = (id) => {
     console.log("edit", id);
+    dispatch(modalActions.open());
+    setRowToBeEdited((prevData) => id);
   };
 
   const defaultRows = [
@@ -119,8 +126,20 @@ export default function UserManagement() {
     );
   };
 
+  /// setRowData((prevData) => prevData.filter((row) => row.id !== id));
+  const finishUpdate = (formData) => {
+    // console.log("this formData", formData);
+    searchResult.forEach((row) => {
+      if (row.id === rowToBeEditedID) {
+        const updateEntry = { ...formData, id: row.id, manage: row.manage };
+        console.log(updateEntry);
+      }
+    });
+  };
+
   return (
     <>
+      <EditUserManagementForm getValues={finishUpdate} />
       {/* search bar */}
       <TextField
         style={{ float: "right", margin: "5px" }}
