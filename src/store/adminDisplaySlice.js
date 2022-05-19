@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  displayContent: "User Management",
+  displayContent: "Summary",
 };
 
 export const adminDisplaySlice = createSlice({
@@ -10,6 +10,9 @@ export const adminDisplaySlice = createSlice({
   reducers: {
     userManagementDisplay: (state) => {
       state.displayContent = "User Management";
+    },
+    summaryDisplay: (state) => {
+      state.displayContent = "Summary";
     },
     factoryDetailsDisplay: (state) => {
       state.displayContent = "Factory Detail";

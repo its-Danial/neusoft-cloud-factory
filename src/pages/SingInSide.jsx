@@ -54,7 +54,7 @@ function SignInSide(props) {
   return (
     <>
       {isLoggedIn && accountType === "administrator" && (
-        <Redirect to="/dashboard/admin/user-management" />
+        <Redirect to="/dashboard/admin/summary" />
       )}
       {isLoggedIn && accountType === "manager" && (
         <Redirect to="/dashboard/manufacturer/my-factory" />

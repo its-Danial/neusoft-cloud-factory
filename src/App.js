@@ -20,6 +20,9 @@ function App() {
       <Route path="/sign-up" exact>
         <SignUp />
       </Route>
+      <Route path="/dashboard/admin/summary" exact>
+        <AdminDash />
+      </Route>
       <Route path="/dashboard/admin/user-management" exact>
         <AdminDash />
       </Route>

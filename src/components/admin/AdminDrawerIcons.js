@@ -2,7 +2,7 @@ import React from "react";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupIcon from "@mui/icons-material/Group";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
@@ -43,8 +43,22 @@ const NavRedirect = () => {
     dispatch(adminDisplayActions.deviceDetailsDisplay());
   };
 
+  //Display Summary Handler
+  const displaySummaryHandler = (event) => {
+    dispatch(adminDisplayActions.summaryDisplay());
+  };
+
   return (
     <React.Fragment>
+      {/* ----------------- */}
+      <NavTo to="/dashboard/admin/summary">
+        <ListItemButton onClick={displaySummaryHandler}>
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary="Dashboard" />
+        </ListItemButton>
+      </NavTo>
       {/* ----------------- */}
       <NavTo to="/dashboard/admin/user-management">
         <ListItemButton onClick={displayUserManagementHandler}>

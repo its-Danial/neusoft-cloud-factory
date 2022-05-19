@@ -21,6 +21,8 @@ import ProductDetails from "./admin/Product Management/ProductDetails";
 //Capacity Center
 import DeviceCategory from "./admin/Capacity Center/DeviceCategory";
 import DeviceDetails from "./admin/Capacity Center/DeviceDetails";
+//Summary
+import SummaryGraphs from "./admin/Summary/SummaryGraphs";
 
 import { AppBar, Drawer } from "./ui/StylesAppBar";
 import AdminDrawerIcons from "./admin/AdminDrawerIcons";
@@ -167,7 +169,8 @@ function DashboardContent(props) {
                 <DeviceDetails />
               )}
 
-              <PageNumber />
+              {displayContent === "Summary" && <SummaryGraphs />}
+              {displayContent !== "Summary" && <PageNumber />}
             </Container>
             <Copyright sx={{ pt: 4 }} />
           </Box>
