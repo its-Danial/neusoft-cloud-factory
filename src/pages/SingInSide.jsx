@@ -120,7 +120,7 @@ function SignInSide(props) {
                     required
                     fullWidth
                     id="email"
-                    label="Email Address"
+                    label="User Name"
                     name="email"
                     autoComplete="email"
                     autoFocus
@@ -132,7 +132,7 @@ function SignInSide(props) {
                     required
                     fullWidth
                     id="email"
-                    label="Email Address"
+                    label="User Name"
                     name="email"
                     autoComplete="email"
                     autoFocus
@@ -149,7 +149,7 @@ function SignInSide(props) {
                     id="password"
                     autoComplete="current-password"
                     error
-                    helperText="Incorrect Password or Email"
+                    helperText="Incorrect Password or Username"
                   />
                 ) : (
                   <TextField
