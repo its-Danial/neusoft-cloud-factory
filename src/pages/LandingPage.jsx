@@ -18,6 +18,7 @@ import Copyright from "../components/ui/Copyright";
 import CloudIcon from "@mui/icons-material/Cloud";
 import { CardActionArea } from "@mui/material";
 import { useHistory } from "react-router-dom";
+import Background from "../assets/background.jpg";
 
 const cards = [
   "https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShaggyMullet&accessoriesType=Round&hairColor=Blonde&facialHairType=Blank&facialHairColor=Blonde&clotheType=GraphicShirt&clotheColor=White&graphicType=Bat&eyeType=Wink&eyebrowType=DefaultNatural&mouthType=Grimace&skinColor=Light",
@@ -43,8 +44,15 @@ export default function LandingPage() {
       <AppBar position="relative">
         <Toolbar>
           <CloudIcon sx={{ mr: 2 }} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Neusoft cloud factory
+          <Typography
+            sx={{
+              fontFamily: "'Ubuntu', sans-serif",
+            }}
+            variant="h6"
+            color="inherit"
+            noWrap
+          >
+            Neusoft
           </Typography>
         </Toolbar>
       </AppBar>
@@ -52,7 +60,8 @@ export default function LandingPage() {
         {/* Hero unit */}
         <Box
           sx={{
-            bgcolor: "background.paper",
+            // bgcolor: "background.paper",
+            backgroundImage: `url(${Background})`,
             pt: 8,
             pb: 6,
           }}
@@ -64,8 +73,13 @@ export default function LandingPage() {
               align="center"
               color="text.primary"
               gutterBottom
+              sx={{
+                fontWeight: 200,
+                fontFamily: "'Ubuntu', sans-serif",
+                color: "#353433",
+              }}
             >
-              Neusoft cloud factory
+              Neusoft Cloud Factory
             </Typography>
             <Typography
               variant="h5"
@@ -104,8 +118,21 @@ export default function LandingPage() {
             </Stack>
           </Container>
         </Box>
-        <Container sx={{ py: 4 }} maxWidth="md">
+        <Box
+          sx={{
+            bgcolor: "primary.main",
+            color: "primary.contrastText",
+            pt: 8,
+            pb: 6,
+            borderRadius: "16px",
+          }}
+        >
           <Typography
+            sx={{
+              letterSpacing: 3,
+              fontFamily: "'Ubuntu', sans-serif",
+              color: "#353433",
+            }}
             component="h1"
             variant="h4"
             align="center"
@@ -113,34 +140,36 @@ export default function LandingPage() {
           >
             Testimonials
           </Typography>
-          {/* End hero unit */}
-          <Grid container spacing={4}>
-            {cards.map((card, index) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card sx={{ maxWidth: 345 }}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      height="200"
-                      image={card}
-                      alt="Avatar Image"
-                    />
-                    <CardContent>
-                      <Typography variant="h5" component="div">
-                        Lorem Name
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        Testimonial Lorem ipsum dolor sit amet, consectetur
-                        adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+          <Container sx={{ py: 4 }} maxWidth="md">
+            {/* End hero unit */}
+            <Grid container spacing={4}>
+              {cards.map((card, index) => (
+                <Grid item key={card} xs={12} sm={6} md={4}>
+                  <Card sx={{ maxWidth: 345 }}>
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="250"
+                        image={card}
+                        alt="Avatar Image"
+                      />
+                      <CardContent>
+                        <Typography variant="h5" component="div">
+                          Lorem Name
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          Testimonial Lorem ipsum dolor sit amet, consectetur
+                          adipiscing elit, sed do eiusmod tempor incididunt ut
+                          labore et dolore magna aliqua
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
+        </Box>
         <Copyright />
       </main>
     </ThemeProvider>

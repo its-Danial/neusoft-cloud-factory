@@ -90,7 +90,7 @@ export default function FactoryDetails() {
       "manager",
       "contact",
       "username3",
-      "on",
+      "off",
       <PowerButton onChangeColor={turnOnOffHandler} id={36612} />
     ),
   ];
@@ -147,7 +147,7 @@ export default function FactoryDetails() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {searchResult.map((row) => (
               <StyledTableRow key={row.id}>
                 <StyledTableCell component="th" scope="row">
                   {row.id}
